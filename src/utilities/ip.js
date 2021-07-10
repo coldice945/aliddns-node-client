@@ -1,11 +1,13 @@
 const process = require('./process');
 const logger = require('./logger');
 const error = require('../error');
-const API_Domain = 'https://api.ipify.org/';
+const API_Domain = 'https://www.taobao.com/help/getip.php';
 
 
 function getRealIp() {
-    let ip = process.curl(API_Domain);
+    const result = (process.curl(API_Domain) || '').match(/\"(.*?)\"/ig);
+    const ip = (result || []).map(str => str.substr(1, str.length - 2))[0]
+
     if (ip) {
         logger.info(`get real ip success ${ip}`);
     } else {
