@@ -1,11 +1,14 @@
 const schedule = require('node-schedule');
+const dayjs = require("dayjs");
 const aliddns = require('../aliyun/aliddns');
 const ip = require('../utilities/ip');
 
 let Ali_DOMAINS = [];
-
+let count = 1;
 
 async function checkChange() {
+    console.log(`============== 第 ${count} 次检测开始 ${dayjs().format('YYYY-MM-DD HH:mm:ss')} ==============`);
+
     let realIp = ip.getRealIp();
 
     Ali_DOMAINS.forEach(async domain => {
