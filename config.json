@@ -3,4 +3,5 @@
   "accessKeySecret": "XXX",
   "domain": ["XXX", "XXX"],
   "cronRule": "0 */5 * * * *"
+  "count": 1
 }

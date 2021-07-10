@@ -1,13 +1,13 @@
 const schedule = require('node-schedule');
 const dayjs = require("dayjs");
+const config = require('../../config');
 const aliddns = require('../aliyun/aliddns');
 const ip = require('../utilities/ip');
 
 let Ali_DOMAINS = [];
-let count = 1;
 
 async function checkChange() {
-    console.log(`============== 第 ${count} 次检测开始 ${dayjs().format('YYYY-MM-DD HH:mm:ss')} ==============`);
+    console.log(`============== 第 ${config.count} 次检测开始 ${dayjs().format('YYYY-MM-DD HH:mm:ss')} ==============`);
 
     let realIp = ip.getRealIp();
 
@@ -27,7 +27,6 @@ async function checkChange() {
         let changed = ipChanged || domainChanged;
         changed && await updateDomain(realIp, domain);
     });
-
 }
 
 
@@ -46,13 +45,13 @@ function start(rule, callback) {
 }
 
 
-function init(config) {
+function init() {
     if (Array.isArray(config.domain)) {
         Ali_DOMAINS = config.domain;
     } else {
         Ali_DOMAINS = Array.of(config.domain);
     }
-    start(config.cronRule, () => checkChange());
+    start(config.cronRule, () => checkChange(config));
 }
 
 function parseDomain(domain) {

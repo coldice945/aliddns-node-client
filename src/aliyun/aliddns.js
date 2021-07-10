@@ -2,6 +2,7 @@ const sign = require('./sign');
 const logger = require('../utilities/logger');
 const error = require('../error');
 const request = require('../request');
+const config = require('../../config');
 const Ali_API = 'https://alidns.aliyuncs.com/';
 const Ali_DOMAIN_TYPE = 'A';
 
@@ -99,7 +100,7 @@ function buildQuery(mothod, query) {
 }
 
 
-function init(config) {
+function init() {
     if (!config.accessKeyId) {
         logger.error(error.ALI_ACCESS_KEY_ID_EMPTY);
     }
