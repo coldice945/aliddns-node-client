@@ -1,5 +1,6 @@
 {
   "accessKeyId": "XXX",
   "accessKeySecret": "XXX",
-  "domain": ["XXX", "XXX"]
+  "domain": ["XXX", "XXX"],
+  "cronRule": "0 */5 * * * *"
 }

@@ -1,8 +1,6 @@
 const schedule = require('node-schedule');
 const aliddns = require('../aliyun/aliddns');
 const ip = require('../utilities/ip');
-const SECOND_RULE = '* * * * * *';
-const MINUTE_RULE = '0 * * * * *';
 
 let Ali_DOMAINS = [];
 
@@ -51,7 +49,7 @@ function init(config) {
     } else {
         Ali_DOMAINS = Array.of(config.domain);
     }
-    start(MINUTE_RULE, () => checkChange());
+    start(config.cronRule, () => checkChange());
 }
 
 function parseDomain(domain) {
