@@ -3,11 +3,12 @@ const dayjs = require("dayjs");
 const config = require('../../config');
 const aliddns = require('../aliyun/aliddns');
 const ip = require('../utilities/ip');
+let count = 1;
 
 let Ali_DOMAINS = [];
 
 async function checkChange() {
-    console.log(`============== 第 ${config.count} 次检测开始 ${dayjs().format('YYYY-MM-DD HH:mm:ss')} ==============`);
+    console.log(`============== 第 ${count++} 次检测开始 ${dayjs().format('YYYY-MM-DD HH:mm:ss')} ==============`);
 
     let realIp = ip.getRealIp();
 
