@@ -21,22 +21,23 @@ npm install
     accessKeyId       你的阿里云accessKeyId
     accessKeySecret   你的阿里云accessKeySecret
     domain            域名  例如  ["baidu.com", "fomav.cn"] 或者 fomav.cn
-    
-### 5、运行程序
+    cronRule          定期任务时间，* * * * * * 是每秒执行一次，0 * * * * * 是每分钟执行一次，0 */5 * * * * 是每五分钟执行一次
+
+### 5、运行程序（开发模式）
 ```
 npm run start
 ```
 
-### 6、后台运行 
+### 6、后台运行（普通部署上线）
 ```
 npm install -g pm2
 ```
 随后执行 
 ```
-pm2 start ./src/index.js --name aliddns-node-client
+pm2 start ./pm2.json
 ```
 
-### 7、开机自启动 
+### 7、开机自启动
 ```
 sudo pm2 startup
 sudo pm2 save 
@@ -45,7 +46,14 @@ sudo pm2 save
 ```
 sudo systemctl reboot 
 ```
+
 ### 8、取消开机自启动
 ```
 sudo pm2 unstartup systemd
+```
+
+### 9、Docker 部署模式
+```
+docker build -t aliddns-node-client -f Dockerfile .
+docker run -d aliddns-node-client --name aliddns-node-client
 ```
