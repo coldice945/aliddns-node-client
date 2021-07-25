@@ -2,7 +2,7 @@ FROM keymetrics/pm2:latest
 
 # Bundle APP files
 COPY src/ src/
-COPY config.json .
+COPY config.js .
 COPY package.json .
 COPY pm2.json .
 
@@ -11,7 +11,7 @@ RUN apk update
 RUN apk upgrade
 RUN apk add curl
 
-# set timezone
+# Set timezone
 ENV TZ Asia/Shanghai
 RUN apk add tzdata && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone

@@ -4,8 +4,8 @@
 
 # 使用教程
 
-
-### 1、安装nodejs环境
+## pm2 部署方式
+### 1、安装 nodejs 环境
 
 ### 2、clone 项目代码
 
@@ -17,7 +17,7 @@ cd aliddns-node-client
 npm install
 ```
 
-### 4、修改config.json 
+### 4、修改config.js
     accessKeyId       你的阿里云accessKeyId
     accessKeySecret   你的阿里云accessKeySecret
     domain            域名  例如  ["baidu.com", "fomav.cn"] 或者 fomav.cn
@@ -52,8 +52,9 @@ sudo systemctl reboot
 sudo pm2 unstartup systemd
 ```
 
-### 9、Docker 部署模式
+## Docker 部署模式
 ```
 docker build -t aliddns-node-client -f Dockerfile .
-docker run -d aliddns-node-client --name aliddns-node-client
+docker run -d aliddns-node-client \
+  --name aliddns-node-client
 ```
