@@ -54,7 +54,13 @@ sudo pm2 unstartup systemd
 
 ## Docker 部署模式
 ```
-docker build -t aliddns-node-client -f Dockerfile .
-docker run -d aliddns-node-client \
-  --name aliddns-node-client
+// 拉取镜像
+docker pull coldice945/aliddns-node-client
+// 运行 docker 镜像，记得要改对应的参数
+docker run -d coldice945/aliddns-node-client \
+  --name aliddns-node-client \
+  -e DOMAIN=["xxx.com", "www.xxx.com"] \
+  -e CRON_RULE=0 */5 * * * * \
+  -e ACCESSKEY_ID=xxxx \
+  -e ACCESS_KEY_SECRET=xxxx \
 ```
